@@ -1,0 +1,25 @@
+{
+    "name": "aron/signagture-verification",
+    "description": "接口签名验证",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Aron Yao",
+            "email": "Aron.Yao@feisu.com"
+        }
+    ],
+    "keywords": [
+        "signature"
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ext-json": "*",
+        "php": "^7.4 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aron\\Sigature": "src"
+        }
+    }
+}
