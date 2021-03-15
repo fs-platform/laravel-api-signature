@@ -19,7 +19,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Aron\\Sigature\\": "src"
+            "Aron\\Signature\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aron\\Sigature\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aron\\Signature\\Provider\\SignatureServiceProvider"
+            ]
         }
     }
 }

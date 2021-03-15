@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Aron\signature\Service;
+namespace Aron\Signature\Service;
 
 use Illuminate\Support\Str;
 
@@ -24,20 +24,6 @@ class AuthSignatureService
     }
 
     /**
-     * @Notes: 注册model
-     * @return $this
-     *
-     * @author: Aron
-     * @Date: 2021/3/2
-     * @Time: 12:20 下午
-     */
-    protected function registerModel(): self
-    {
-        // TODO: Implement registerModel() method.
-        return $this;
-    }
-
-    /**
      * @Notes: 生成对称加密密钥
      *
      * @param string $timestamp 时间戳
@@ -49,7 +35,7 @@ class AuthSignatureService
      * @Date: 2021-03-01
      * @Time: 14:48
      */
-    protected function generateSignature(
+    public function generateSignature(
         string $timestamp,
         string $nonce,
         string $payload,
@@ -68,7 +54,7 @@ class AuthSignatureService
      * @Date: 2021-03-01
      * @Time: 14:56
      */
-    protected function generateNonce(): string
+    public function generateNonce(): string
     {
         return Str::random(16);
     }
@@ -127,7 +113,7 @@ class AuthSignatureService
      * @Date: 2021/3/1
      * @Time: 5:23 下午
      */
-    private function getSignatureApiSecret(string $signatureApiKey): string
+    public function getSignatureApiSecret(string $signatureApiKey): string
     {
         $apiInfo = array_filter($this->signature, fn($item) => $item['signatureApiKey'] === $signatureApiKey);
         if (empty($apiInfo)) {

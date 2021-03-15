@@ -1,10 +1,10 @@
 <?php
 namespace Aron\Signature\Provider;
 
-use Aron\signature\Service\AuthSignatureService;
+use Aron\Signature\Service\AuthSignatureService;
 use Illuminate\Support\ServiceProvider;
 
-class signatureServiceProvider extends ServiceProvider
+class SignatureServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,7 +14,7 @@ class signatureServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->singleton('signature', AuthSignatureService::class);
+        $this->app->singleton('Signature', AuthSignatureService::class);
     }
 
     /**
@@ -27,7 +27,7 @@ class signatureServiceProvider extends ServiceProvider
         //
         // 发布配置文件
         $this->publishes([
-            __DIR__.'/Config/php' => config_path('signature.php'),
+            __DIR__.'/../config/signature.php' => config_path('signature.php'),
         ]);
     }
 }
