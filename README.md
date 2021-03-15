@@ -15,11 +15,6 @@ $ composer require aron/signagture-verification
 $ php artisan vendor:publish
 ```
 
-3. config/app.php providers 添加 providers
-
-```php
-Aron\Signature\Provider::class
-```
 > 使用门脸内
 
 config/app.php aliases 添加
