@@ -33,7 +33,7 @@
                 "Aron\\Signature\\Provider\\SignatureServiceProvider"
             ],
             "aliases": {
-                "Signature": "Aron\\Singature\\Facades\\Signature"
+                "Signature": "Aron\\Signature\\Facades\\Signature"
             }
         }
     }
