@@ -31,7 +31,10 @@
         "laravel": {
             "providers": [
                 "Aron\\Signature\\Provider\\SignatureServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Signature": "Aron\\Singature\\Facades\\Signature"
+            }
         }
     }
 }

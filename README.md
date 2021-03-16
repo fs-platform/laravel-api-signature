@@ -15,15 +15,11 @@ $ composer require aron/signagture-verification
 $ php artisan vendor:publish
 ```
 
-> 使用门脸内
-
-config/app.php aliases 添加
-```php
-'Signature' =>  Aron\signature\Facades::class
-```
-
 4. 开始使用
 ```php
-Signature::verifySignature('时间戳',
+\Signature::verifySignature('时间戳',
+'随机字符串','requestBody', '签名认证key','客户端签名');
+
+app('Signature')->verifySignature('时间戳',
 '随机字符串','requestBody', '签名认证key','客户端签名');
 ```
