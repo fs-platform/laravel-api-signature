@@ -1,5 +1,5 @@
 {
-    "name": "aron/signagture-verification",
+    "name": "aron/signature-verification",
     "description": "接口签名验证",
     "license": "MIT",
     "type": "library",
