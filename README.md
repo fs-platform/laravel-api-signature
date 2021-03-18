@@ -7,7 +7,7 @@
 ## 基本使用
 1. 安装
 ```bash
-$ composer require aron/laravel-signagture-verification
+$ composer require aron/laravel-signature-verification
 ```
 
 2. 发布config 文件
