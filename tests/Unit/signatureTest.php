@@ -6,7 +6,7 @@ use Aron\Signature\Service\AuthSignatureService;
 use Tests\TestCase;
 use Tests\CreatesApplication;
 
-class signatureTest extends TestCase
+class SignatureTest extends TestCase
 {
     use CreatesApplication;
 

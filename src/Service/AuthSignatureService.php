@@ -87,7 +87,7 @@ class AuthSignatureService
             }
         }
         $apiSecret = $this->getSignatureApiSecret($signatureApiKey);
-        if (empty($apiSecret)) {
+        if (empty($apiSecret) || !$this->verifiedTimestamp($timestamp, $signatureApiKey)) {
             return false;
         }
         $arg = [
@@ -115,10 +115,52 @@ class AuthSignatureService
      */
     public function getSignatureApiSecret(string $signatureApiKey): string
     {
-        $apiInfo = array_filter($this->signature, fn($item) => $item['signatureApiKey'] === $signatureApiKey);
+        $apiInfo = $this->getSignatureApiInfo($signatureApiKey);
         if (empty($apiInfo)) {
             return '';
         }
         return $apiInfo[0]['signatureSecret'];
+    }
+
+    /**
+     * @Notes: 根据apikey 获取api信息
+     *
+     * @param string $signatureApiKey
+     * @return array
+     * @author: Aron
+     * @Date: 2021/3/19
+     * @Time: 4:22 下午
+     */
+    protected function getSignatureApiInfo(string $signatureApiKey = ""): array
+    {
+        $apiInfo = array_filter($this->signature, fn($item) => $item['signatureApiKey'] === $signatureApiKey);
+        if (empty($apiInfo)) {
+            return [];
+        }
+        return $apiInfo;
+    }
+
+    /**
+     * @Notes: 验证时间戳有效性
+     *
+     * @param string $timestamp
+     * @param string $signatureApiKey
+     * @return bool
+     * @author: Aron
+     * @Date: 2021/3/19
+     * @Time: 4:29 下午
+     */
+    protected function verifiedTimestamp(string $timestamp = "", string $signatureApiKey = ""): bool
+    {
+        $apiInfo = $this->getSignatureApiInfo($signatureApiKey);
+        if (empty($apiInfo)) {
+            return false;
+        }
+        $timestamp = (int)$timestamp;
+        $timestampValidity = (int)$apiInfo[0]['timestampValidity'];
+        if (time() - $timestamp > $timestampValidity) {
+            return false;
+        }
+        return true;
     }
 }
