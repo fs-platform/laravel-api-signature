@@ -12,7 +12,7 @@ $ composer require aron/laravel-signature-verification
 
 2. 发布config 文件
 ```bash
-$ php artisan vendor:publish
+$ php artisan vendor:publish --provider="Aron\Signature\Provider\SignatureServiceProvider"
 ```
 
 4. 开始使用
