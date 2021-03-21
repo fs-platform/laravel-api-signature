@@ -2,6 +2,7 @@
 
 namespace Aron\Signature\Provider;
 
+use Aron\Signature\Console\GenerateSignature;
 use Aron\Signature\Service\AuthSignatureService;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +17,9 @@ class SignatureServiceProvider extends ServiceProvider
     {
         //
         $this->app->singleton('Signature', AuthSignatureService::class);
+        $this->commands([
+            GenerateSignature::class
+        ]);
     }
 
     /**
