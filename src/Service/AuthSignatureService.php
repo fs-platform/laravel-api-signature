@@ -40,7 +40,8 @@ class AuthSignatureService
         string $nonce,
         string $payload,
         string $signatureSecret
-    ): string {
+    ): string
+    {
         $data = $timestamp . $nonce . $payload;
         $hmac = hash_hmac($this->signatureType, $data, $signatureSecret);
         return base64_encode($hmac);
@@ -79,7 +80,8 @@ class AuthSignatureService
         string $payload,
         string $signatureApiKey,
         string $clientSignature
-    ): bool {
+    ): bool
+    {
         $arguments = func_get_args();
         foreach ($arguments as $v) {
             if (empty($v)) {
@@ -137,7 +139,7 @@ class AuthSignatureService
         if (empty($apiInfo)) {
             return [];
         }
-        return $apiInfo;
+        return array_values($apiInfo);
     }
 
     /**
