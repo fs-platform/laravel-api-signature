@@ -88,6 +88,9 @@ class AuthSignatureService
                 return false;
             }
         }
+        if (time() - $timestamp > config('signature')['timestampValidity']) {
+            return false;
+        }
         $apiSecret = $this->getSignatureApiSecret($signatureApiKey);
         if (empty($apiSecret) || !$this->verifiedTimestamp($timestamp, $signatureApiKey)) {
             return false;
