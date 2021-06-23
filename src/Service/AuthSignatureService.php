@@ -88,7 +88,7 @@ class AuthSignatureService
                 return false;
             }
         }
-        if (time() - $timestamp > config('signature')['timestampValidity']) {
+        if (time() - $timestamp > $this->getSignatureApiTime($signatureApiKey)) {
             return false;
         }
         $apiSecret = $this->getSignatureApiSecret($signatureApiKey);
@@ -124,7 +124,26 @@ class AuthSignatureService
         if (empty($apiInfo)) {
             return '';
         }
-        return $apiInfo[0]['signatureSecret'];
+        return current($apiInfo)['signatureSecret'];
+    }
+
+    /**
+     * @Notes: 获取验证时间戳
+     *
+     * @param string $signatureApiKey
+     * @return string
+     * @author: Aron
+     * @Date: 2021/6/23
+     * @Time: 12:32 下午
+     */
+    public function getSignatureApiTime(string $signatureApiKey): string
+    {
+        $apiInfo = $this->getSignatureApiInfo($signatureApiKey);
+        if (empty($apiInfo)) {
+            return '';
+        }
+
+        return current($apiInfo)['timestampValidity'];
     }
 
     /**
